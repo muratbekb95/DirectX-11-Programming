@@ -185,6 +185,7 @@ bool GraphicsClass::Render(CameraClass* m_Camera, LightClass* m_Light, SimpleTex
 	XMMATRIX lightViewMatrix, lightProjectionMatrix;
 	bool result = false;
 
+
 	// First render the scene to a texture.
 	result = RenderSceneToTexture(m_Light);
 	if (!result)
@@ -194,6 +195,10 @@ bool GraphicsClass::Render(CameraClass* m_Camera, LightClass* m_Light, SimpleTex
 
 	// Clear the buffers to begin the scene.
 	m_D3D->BeginScene(.0f, .0f, .0f, 1.0f);
+
+	wchar_t pretext[200];
+	swprintf(pretext, 200, L"Number of unattached objects: %u\nNumber of attached objects: %u", numberOfUnattachedObjects, numberOfAttachedObjects);
+	m_SimpleText->DrawTextOnScene(240, 50, pretext);
 
 	// Generate the view matrix based on the camera's position.
 	m_Camera->Render();
@@ -222,10 +227,6 @@ bool GraphicsClass::Render(CameraClass* m_Camera, LightClass* m_Light, SimpleTex
 			return false;
 		}
 	}
-
-	wchar_t pretext[200];
-	swprintf(pretext, 200, L"Number of unattached objects: %u\nNumber of attached objecst: %u", numberOfUnattachedObjects, numberOfAttachedObjects);
-	m_SimpleText->DrawTextOnScene(240, 50, pretext);
 
 	// Present the rendered scene to the screen.
 	m_D3D->EndScene();

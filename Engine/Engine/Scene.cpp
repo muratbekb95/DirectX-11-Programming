@@ -139,7 +139,7 @@ bool Scene::Init(int sWidth, int sHeight, HWND hwnd)
 	m_SimpleText = new SimpleText;
 	m_SimpleText->Init(hwnd, COLORREF RGB(1, 1, 1), m_Graphics->m_D3D);
 	wchar_t pretext[200];
-	swprintf(pretext, 200, L"Number of unattached objects: %u\nNumber of attached objecst: %u", numberOfUnattachedObjects, numberOfAttachedObjects);
+	swprintf(pretext, 200, L"Number of unattached objects: %u\nNumber of attached objects: %u", numberOfUnattachedObjects, numberOfAttachedObjects);
 	m_SimpleText->DrawTextOnScene(240, 50, pretext);
 
 	return result;

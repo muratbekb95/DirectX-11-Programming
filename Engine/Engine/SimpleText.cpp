@@ -61,8 +61,8 @@ HRESULT SimpleText::CreateDeviceResources() {
                     DXGI_FORMAT_UNKNOWN,
                     D2D1_ALPHA_MODE_PREMULTIPLIED
                 },
-                static_cast<FLOAT>(800),
-                static_cast<FLOAT>(600)
+                static_cast<FLOAT>(0),
+                static_cast<FLOAT>(0)
             },
             &pRT_
         );
@@ -116,7 +116,6 @@ void SimpleText::ConfigureBrush(FLOAT posX, FLOAT posY, const wchar_t* wszText_)
         static_cast<FLOAT>(0),
         static_cast<FLOAT>(0)
     );
-
     
     UINT32 cTextLength_ = (UINT32)wcslen(wszText_);
 
@@ -130,8 +129,7 @@ void SimpleText::ConfigureBrush(FLOAT posX, FLOAT posY, const wchar_t* wszText_)
 }
 
 bool SimpleText::DrawTextOnScene(FLOAT posX, FLOAT posY, const wchar_t* wszText_) {
-
-    if (!pRT_)
+    if (pRT_)
     {
         pRT_->BeginDraw();
 
